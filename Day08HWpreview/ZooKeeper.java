@@ -1,4 +1,4 @@
-package Day08HWpreview;
+package day08HWpreview;
 
 public class ZooKeeper {
 //	public static void feed(Tiger t) {

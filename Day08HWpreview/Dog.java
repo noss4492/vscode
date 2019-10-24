@@ -1,4 +1,4 @@
-package Day08HWpreview;
+package day08HWpreview;
 
 public class Dog extends Animal{
 	public void sleep() {

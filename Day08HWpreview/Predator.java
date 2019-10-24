@@ -1,4 +1,4 @@
-package Day08HWpreview;
+package day08HWpreview;
 
 public interface Predator {
 	// 인터페이스에 추가되는 메소드는 어떻게 되는 걸까?

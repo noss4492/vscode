@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - GenericDemo",
+            "request": "launch",
+            "mainClass": "day10_solo.GenericDemo"
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-package Day08HWpreview;
+package day08HWpreview;
 
 public class TestMain {
 	public static void main(String[] args) {

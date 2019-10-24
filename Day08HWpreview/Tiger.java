@@ -1,4 +1,4 @@
-package Day08HWpreview;
+package day08HWpreview;
 
 public class Tiger extends Animal implements Predator {
 	public String getFood() {

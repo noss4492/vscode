@@ -1,4 +1,4 @@
-package Day08HWpreview;
+package day08HWpreview;
 
 public class HouseDog extends Dog {
 	public void sleep() {				// 메소드의 오버라이딩이 가능하다.(상속받아 재정의하여 (다형성을 지닌채) 사용 가능하다는 이야기인듯)
