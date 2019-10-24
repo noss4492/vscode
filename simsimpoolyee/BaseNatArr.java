@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Deque;
 
-public class baseN {// trans to n-binary number
+public class BaseNatArr {// trans to n-binary number
 	static int i = 0;
 	static ArrayList<Integer> n = new ArrayList<Integer>();
 	//ArrayList를 Dequeue로 바꿔서 다시 만들어보기.
