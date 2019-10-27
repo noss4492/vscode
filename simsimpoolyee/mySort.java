@@ -221,19 +221,11 @@ public class mySort {
 		}
 	}
 	
-	// 비재귀방식으로 구현한 퀵소트 , 해석하기에 용이하다. 일단은 이걸로 알아두자.
+	// 명시적인 재귀문으로 만들어진 퀵소트.
 	public static class QSortPrac{	// 끝을 피봇으로 잡고 시작하는 qSort
 		public static int[] qSort(int arr[], int l, int r) {
 			if(l<r) {
-				System.out.printf("C. l:[%2d],r[%2d]\n",l,r);
-				int p = partition(arr, l, r);	// pivot index
-				System.out.printf("-------- L : %2d, R : %2d\n", l , r);
-				System.out.printf("L ? R : %2d %1c %2d\n",
-						l, (l>r)?'>':'<', r);
-				
-				System.out.printf("L. l:[%2d],r[%2d]\n",l,p-1);
-				System.out.printf("R. l:[%2d],r[%2d]\n\n",p+1,r);
-			
+				int p = partition(arr, l, r);	
 				arr = qSort(arr, l, p-1);
 				arr = qSort(arr, p+1, r);
 			}
@@ -249,7 +241,7 @@ public class mySort {
 					arr = swap(arr, i, j);
 				}
 			}
-			arr = swap(arr, i+1, r);
+			arr = swap(arr, i+1, r);	// 피봇 위치 알맞게 ㅇㅇ
 			return i+1;
 		}
 	}
@@ -260,6 +252,10 @@ public class mySort {
 	public static int[] heapSort(int[] arr) {	// 마이웨이 멋있어..
 		System.out.println("[ Heap Sort ]");
 		return arr;
+	}
+	
+	public class MergeSort{	// 킹갓노이만 ㄷㄷ;;
+		
 	}
 	
 	/* ----------    sort method end   ---------- */

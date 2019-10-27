@@ -1,6 +1,8 @@
 package day10_2;
 
-public class Marine extends Terran{
+import day11.Flyable;
+
+public class Marine extends Terran implements Flyable{
 	int atk, atkspd;
 	
 	public Marine(){	//init generator, no parameter
@@ -20,6 +22,9 @@ public class Marine extends Terran{
 		System.out.printf("attack %2d*%2d\n",(this.atk - b.armor), this.atkspd);
 	}
 
+	public void flying() {
+		System.out.println("사심? ? ㅅ??? 머라고?");
+	}
 	void steamPack() {
 		if(hp>3) {
 			this.hp -= 3;
