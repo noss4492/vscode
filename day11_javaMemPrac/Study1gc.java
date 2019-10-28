@@ -1,4 +1,4 @@
-package javaMemPrac;
+package day11_javaMemPrac;
 
 public class Study1gc {
 	public static void main(String[] args) {

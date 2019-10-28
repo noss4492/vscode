@@ -1,5 +1,4 @@
 package myPlayGround;
-
 // PC -> MAR   ->주소버스
 // PC - 제어장치  ->제어버스
 // IR <- MBR   <-데이터버스

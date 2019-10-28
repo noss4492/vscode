@@ -10,5 +10,6 @@ package day11;
 // 상수와 추상메서드로만 이루어져 있다.
 
 public interface Flyable {
+	final int a = 10;
 	public abstract void flying();
 }
