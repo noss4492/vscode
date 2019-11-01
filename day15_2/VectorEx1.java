@@ -44,10 +44,10 @@ public class VectorEx1 {
 		}
 		for(int i = 0 ; i < v.size(); i++) {
 			obj1[i] = v.get(i);
-			System.out.println("||"+obj1[i].toString().toString().toString());
+//			System.out.println("||"+obj1[i].toString().toString().toString());
 			System.out.println(i+":"+obj1[i].toString().substring(0, 1));
 		}
-		
+		 // 요거 한번 그려보셈  ' '
 		
 		System.out.println("----------------");
 		// ' 3'

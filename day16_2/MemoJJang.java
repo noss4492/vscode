@@ -3,6 +3,7 @@ package day16_2;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -114,13 +115,26 @@ public class MemoJJang extends JFrame implements ActionListener{
 		}else if(obj == miOpen) {
 			System.out.println("열기 메뉴아이템 선택");
 			JFileChooser jfc = new JFileChooser();
-			jfc.showOpenDialog(this);
-			
-			
+			int result = jfc.showOpenDialog(this);
+			if(result == JFileChooser.APPROVE_OPTION) {
+				// 파일 I/O
+				System.out.println("파일 I/O는 중급부터야 ' 3' 꺼졍");
+				System.out.println("다음 주 쯤 ?  ' ' ;;; ");
+				File f = jfc.getSelectedFile();
+				System.out.println(f.getName());
+			}
 		}else if(obj == miSave) {
-			
+			System.out.println("저장하기");
+			JFileChooser jfc = new JFileChooser("C:\\");
+			int result = jfc.showSaveDialog(this);
+			if(result == JFileChooser.APPROVE_OPTION) {
+				File f = jfc.getSelectedFile();
+				System.out.println(f.getName());
+			}
 		}else if(obj == miHelp) {
-
+			for (int i = 0; i < 5; i++) {
+				new SwingEx1();
+			}
 		}
 	}
 }
