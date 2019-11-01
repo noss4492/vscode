@@ -6,13 +6,13 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.util.Random;
 
-public class Hw9 extends Frame{
+public class Hw10_FlowLayout extends Frame{
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
 	int width = WIDTH;
 	int height = HEIGHT;
 	
-	Hw9(){
+	Hw10_FlowLayout(){
 		super();
 		this.setSize(width, height);
 		this.setLocation(100, 100);
@@ -44,7 +44,7 @@ public class Hw9 extends Frame{
 	}
 	
 	public static void main(String[] args) {
-		Hw9 hw9 = new Hw9();
+		Hw10_FlowLayout hw9 = new Hw10_FlowLayout();
 	}
 }
 

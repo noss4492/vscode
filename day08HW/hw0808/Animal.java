@@ -4,6 +4,6 @@ public class Animal {
     String name;
 
     public static void setName(String name){
-        this.name = name;
+        //this.name = name;
     }
 }

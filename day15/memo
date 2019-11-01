@@ -1,0 +1,59 @@
+
+# Wrapper Class
+	OOP(객체지향!)
+
+	그러나 primitive type의 변수는 객체가 아니잖아
+
+	그래서 Wrapper를 이용하여 이러한 기본타입의 변수들을 객체로 만들어 줄 수 있음.
+
+	Wrapper Class
+	
+	
+# JCF (Java Collection Framework)
+	Object형 배열
+
+	List -> 순서 존재, 중복 데이터 허용
+	
+	This interface is a member of the Java Collections Framework.
+	인터페이스 이름이 List
+	 
+	Interface List<E>
+	
+	Type Parameters:
+	E - the type of elements in this list
+	
+	All Superinterfaces:
+	Collection<E>, Iterable<E>
+	All Known Implementing Classes:
+	AbstractList, AbstractSequentialList, ArrayList, AttributeList, 
+	CopyOnWriteArrayList, LinkedList, RoleList, RoleUnresolvedList, 
+	>> Stack, Vector <<
+	
+	
+	
+	    LIST INTERFACE
+	    
+		// Note that this implementation is not synchronized.
+		// 비동기화방식
+		// 벡터는 동기화 방식
+		// 쓰레드 이후에 얘기한다고함
+		
+		// 어레이리스트가 벡터보다 빠름.
+		
+		// list 인터페이스 : 순서 있음, 중복 허용
+		// Vector Stack ArrayList
+		
+		
+		LIST INTERFACE
+		ArrayList Stack Vector
+		SET INTERFACE
+		HashSet
+		
+		
+		
+		
+		
+		
+
+
+	
