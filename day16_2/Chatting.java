@@ -129,6 +129,8 @@ public class Chatting extends JFrame implements ActionListener, KeyListener {
 			while (currTime - saveTime < delayTime) {
 				currTime = System.currentTimeMillis();
 			}
+			
+			
 			jta1.append(msg[pos] + "\n");
 		}
 	}

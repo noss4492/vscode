@@ -123,6 +123,7 @@ public class Hw5 extends Frame implements ActionListener, WindowListener, KeyLis
 		int pastTime = 0;
 		switch(code) {
 		case 8:	// backspace test 작동안됨 ㅠ.ㅠ y값이 int로 내려져서 계속 0으로 잡히는듯
+			t=0;
 			for(int i = 0; i <= 200; i++) {
 				if(x>=WIDTH)
 					x=initX;
@@ -142,12 +143,13 @@ public class Hw5 extends Frame implements ActionListener, WindowListener, KeyLis
 				// jump 0,0 -> 200,100 -> 0, 200
 				// 이 곡선은 시점에 따라 움직인 그래프가 되어야함 x - t
 				// 점프거리(x-WIDTH/8)*2 
-				y = (int) (-0.02*Math.pow(((x-WIDTH/8)-pastT/8),2)+200);//상수는 제거됨
-				ny = (int) (-0.02*Math.pow(((x-WIDTH/8)-t/8),2)+200);
-				y = ny-y+initMoveY;
-				System.out.printf("n:%3d - ny:%3d\t",y, ny);
+				double tmpPy = (-0.02*Math.pow(((x-WIDTH/8)-pastT/8),2)+200);//상수는 제거됨
+				double tmpNy = (-0.02*Math.pow(((x-WIDTH/8)-t/8),2)+200);
+				y += (int)(tmpNy - tmpPy);
+				System.out.printf("[y:%3d][tmpPy:%3.1f][tmpNy:%3.1f],[d:%3.1f]\t"
+														,y, tmpPy, tmpNy, tmpPy-tmpNy);
 				// diff of y(t) + 시작시 높이
-				if(y<=0) {
+				if(y<=0 || y>=HEIGHT-100) {
 					y=tmpY;
 					continue;
 				}

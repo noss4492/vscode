@@ -47,7 +47,7 @@ public class VectorEx1 {
 //			System.out.println("||"+obj1[i].toString().toString().toString());
 			System.out.println(i+":"+obj1[i].toString().substring(0, 1));
 		}
-		 // 요거 한번 그려보셈  ' '
+		 // 요거 한번 그려보셈  ' ' 
 		
 		System.out.println("----------------");
 		// ' 3'
