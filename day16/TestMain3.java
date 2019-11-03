@@ -7,34 +7,34 @@ public class TestMain3 {
 	public static void main(String[] args) {
 		ArrayList<String> list = new ArrayList<String>();
 		
-		list.add("µş±â");
-		list.add("¹Ù³ª³ª");
-		list.add("Æ÷µµ");
-		list.add("Æ÷µµ");
-		list.add("Æ÷µµ");
-		Integer a = 20;	// ¿ÀÅä¹ÚšØ ' 3'...
+		list.add("ë”¸ê¸°");
+		list.add("ë°”ë‚˜ë‚˜");
+		list.add("í¬ë„");
+		list.add("í¬ë„");
+		list.add("í¬ë„");
+		Integer a = 20;	// ì˜¤í† ë°•Âš ' 3'...
 //		list.add(a);
-		list.add("Æ÷µµ");
-		list.add("Æ÷µµ");
-		list.add("Æ÷µµ");
-		list.add("Æ÷µµ");
-		// ¿ÀºêÁ§Æ® Å¸ÀÔÀ» addÇØ¼­ ³ÖÁö¸¸
-		// Ãâ·ÂÇÒ¶§´Â ºÒÆíÇÔ.
-		// Ãâ·ÂÇÒ ¶§ str = (String)obj << ÀÌ¶§ obj¿¡ INTEGERÀÓ
-		// strÀº stringÀÌ´Ï±î integerÀÇ ÇüÁ¦°ü°èÀÓ. ÂüÁ¶°ª Àü´Ş ºÒ°¡´ÉÇÔ.
+		list.add("í¬ë„");
+		list.add("í¬ë„");
+		list.add("í¬ë„");
+		list.add("í¬ë„");
+		// ì˜¤ë¸Œì íŠ¸ íƒ€ì…ì„ addí•´ì„œ ë„£ì§€ë§Œ
+		// ì¶œë ¥í• ë•ŒëŠ” ë¶ˆí¸í•¨.
+		// ì¶œë ¥í•  ë•Œ str = (String)obj << ì´ë•Œ objì— INTEGERì„
+		// strì€ stringì´ë‹ˆê¹Œ integerì˜ í˜•ì œê´€ê³„ì„. ì°¸ì¡°ê°’ ì „ë‹¬ ë¶ˆê°€ëŠ¥í•¨.
 		// java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String
 
-		// className@hashcode·Î ±¸ºĞµÇ±â ¶§¹®¿¡ ±×·±µíÇÔ.ÇØ½¬ÄÚµå´Â Àß ¸ğ¸£°ÚÁö¸¸ ÇØ½¬ÇÔ¼ö(ÂüÁ¶°ª)
-		// ÇÑ¹ø ±×¸² ±×·Áº¸±â ' 3'(µş±â³Ö±â, 20 ³Ö±â -> µş±â »©±â 20 »©±â)
+		// className@hashcodeë¡œ êµ¬ë¶„ë˜ê¸° ë•Œë¬¸ì— ê·¸ëŸ°ë“¯í•¨.í•´ì‰¬ì½”ë“œëŠ” ì˜ ëª¨ë¥´ê² ì§€ë§Œ í•´ì‰¬í•¨ìˆ˜(ì°¸ì¡°ê°’)
+		// í•œë²ˆ ê·¸ë¦¼ ê·¸ë ¤ë³´ê¸° ' 3'(ë”¸ê¸°ë„£ê¸°, 20 ë„£ê¸° -> ë”¸ê¸° ë¹¼ê¸° 20 ë¹¼ê¸°)
 		
-		// ·±Å¸ÀÓ¼º ¿¡·¯ -> À¸¾Ç ¾ß±Ù
+		// ëŸ°íƒ€ì„ì„± ì—ëŸ¬ -> ìœ¼ì•… ì•¼ê·¼
 		
-		// ArrayListÀ» String Àü¿ëÀ¸·Î ÇÏ¸é Ãâ·Â½Ã ¾ÈÀüÇØÁö±ä ÇÏ°ÚÁö
-		// ÄÄÆÄÀÏ·¯¿¡¼­ ¿¡·¯µµ Àâ¾ÆÁÖ±ä ÇÏ°ÚÁö
-		// ±Ùµ¥ ÀÚ·áÇü ÇÏ³ª¸¸ µÇ´Â°Ç Á» ºÒÆíÇÏ°Ú´Âµ¥?
-		// ²¨³¾¶§ ÁöÁ¤µÈ ÀÚ·áÇüÀ¸·Î ¸®ÅÏÇØÁÜ
+		// ArrayListì„ String ì „ìš©ìœ¼ë¡œ í•˜ë©´ ì¶œë ¥ì‹œ ì•ˆì „í•´ì§€ê¸´ í•˜ê² ì§€
+		// ì»´íŒŒì¼ëŸ¬ì—ì„œ ì—ëŸ¬ë„ ì¡ì•„ì£¼ê¸´ í•˜ê² ì§€
+		// ê·¼ë° ìë£Œí˜• í•˜ë‚˜ë§Œ ë˜ëŠ”ê±´ ì¢€ ë¶ˆí¸í•˜ê² ëŠ”ë°?
+		// êº¼ë‚¼ë•Œ ì§€ì •ëœ ìë£Œí˜•ìœ¼ë¡œ ë¦¬í„´í•´ì¤Œ
 		
-		// ÇÏ³ª¾¿ ²¨³»¼­ Ãâ·Â
+		// í•˜ë‚˜ì”© êº¼ë‚´ì„œ ì¶œë ¥
 		Iterator it1 = list.iterator();
 		while(it1.hasNext())
 			System.out.println(it1.next());
@@ -45,7 +45,7 @@ public class TestMain3 {
 			System.out.println("------------");
 //			Object obj = list.get(i);
 //			String str = (String)obj;
-			String str = list.get(i);			// ¸®ÅÏÀÌ ÁöÁ¤µÈ ÇüÀ¸·Î µÊ. ' 3';;
+			String str = list.get(i);			// ë¦¬í„´ì´ ì§€ì •ëœ í˜•ìœ¼ë¡œ ë¨. ' 3';;
 			System.out.println(str.substring(0, 1));
 			
 			

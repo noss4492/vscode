@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class ExceptionEx2 {
 	public static void main(String[] args) {
 		String a = "" + 10;
-		String b = "d" + 20;
+		String b = "aa" + 20;
 		int result = 0;
 		
 //		p = "[^9-0$]";

@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TestSort",
+            "request": "launch",
+            "mainClass": "sortAlgorithm.TestSort",
+            "projectName": "src_6a6f4952"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - GenericDemo",
             "request": "launch",
             "mainClass": "day10_solo.GenericDemo"
