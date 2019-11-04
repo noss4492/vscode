@@ -1,0 +1,31 @@
+
+
+
+
+
+// 임시저장 홀스
+		if(cmd.equals("시작")) {
+			System.out.println("yyyyyyyyy");
+			while(f==false) {
+				for(int i = 0 ; i <= 2; i++) {
+//					문제다 문제... 
+//					try {
+//						Thread.sleep(0, 1);
+//					} catch (InterruptedException e1) {
+//						e1.printStackTrace();
+//					}
+					int x = btnHorse[i].getX();
+					int y = btnHorse[i].getY();
+					int a = (int) (Math.random()*10)+1;
+					x += a;
+					btnHorse[i].setLocation(x, y);
+					if(x >= 690) {
+						f = true;
+						for(int j = 0 ; j <= 2; j++)
+							btnHorse[j].setIcon(img2);
+					}
+				}
+			}
+		}
+		else if(btnHorse[0] == e.getSource()) {
+		}

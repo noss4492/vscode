@@ -7,7 +7,7 @@ public class Lotto {
 	int[] m = new int[6];
 	int[] num = new int[45];
 	
-	Lotto() {
+	public Lotto() {
 		gen();
 		shuffle();
 		set();
@@ -26,7 +26,7 @@ public class Lotto {
 	
 	public void shuffle() {
 		Random rnd = new Random();
-		for(int i = 0; i < 1000; i++) {
+		for(int i = 0; i < 2000; i++) {
 			int tmp;
 			int r1 = rnd.nextInt(45);
 			int r2 = rnd.nextInt(45);

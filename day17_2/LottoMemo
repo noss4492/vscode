@@ -1,0 +1,43 @@
+
+
+
+img = new IamgeIcon[45];
+
+for(int i = 0; i < img.length; i++){
+	img[i] = new ImageIcon("src/images/ball"+(i+1)+".png");
+	
+	
+오늘 배운거
+익스텐스 쓰레드
+임플리먼트 러너블
+싱크로나이즈드(어레이리스트) -> 자원 공유 막기
+요즘에는 wait notify가 자주 사용되는듯
+
+
+
+//////////////////////////////////////////////////////////////////
+정리 (선생님표)
+
+1. Thread 상속
+	1.1 Thread 상속
+	1.2 run() override
+	1.3 start()
+
+2. Runnable 구현
+	2.1 implements Runnable
+	2.2 run() override
+	2.3 new
+	2.4 Thread th = new Thread( 뉴한거 생성자 인자로 넣고 )
+	2.5 th start();
+	
+Thread sleep();
+Thread wait();
+Thread notify();
+Thread notifyAll();
+//////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	
+	
