@@ -1,11 +1,11 @@
-package day16_2;
+package day18_2;
 
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-//AWT ==> 1.1 ==> 1.2 ==> swing(°æ·®È­µÇ¾îÀÖÀ½. ¼ø¼ö ÀÚ¹Ù±â¼ú·Î ÀÌ·ïÁü)
+//AWT ==> 1.1 ==> 1.2 ==> swing(ï¿½æ·®È­ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¹Ù±ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½)
 //Frame                   JFrame
 public class SwingEx1 extends JFrame {
 	final static int WIDTH = 600;
@@ -13,7 +13,7 @@ public class SwingEx1 extends JFrame {
 	JButton btn;
 
 	public SwingEx1() {
-		super("¸Þ¸ðÀå");
+		super("ï¿½Þ¸ï¿½ï¿½ï¿½");
 		ImageIcon img1 = new ImageIcon("src/images/money_cat.jpeg");
 		btn = new JButton(img1);
 		

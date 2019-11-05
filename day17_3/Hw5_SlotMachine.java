@@ -90,21 +90,24 @@ public class Hw5_SlotMachine extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (btnStart == e.getSource()) {
 			System.out.println("슬롯머신 작동");
-			
+
 			Runnable[] r = new Runnable[3];
 			Thread[] th = new Thread[3];
 
-			for(int i =0 ; i <3; i++) {
+			for (int i = 0; i < 3; i++) {
 				r[i] = new UserViewSlot(i, btnSlot, img);
 				th[i] = new Thread(r[i]);
 				th[i].start();
+				System.out.println("th name : "+th[i].getName()+" col : "+i);
 			}
+			
+			System.out.println("");
+
+			System.out.println("끝남");
 		}
 	}
 }
-			
-			
-			
+
 //			Runnable r1 = new UserViewSlot(0, btnSlot, img);	// 1열
 //			Runnable r2 = new UserViewSlot(1, btnSlot, img);	// 2열
 //			Runnable r3 = new UserViewSlot(2, btnSlot, img);
@@ -114,4 +117,3 @@ public class Hw5_SlotMachine extends JFrame implements ActionListener {
 //			th1.start();
 //			th2.start();
 //			th3.start();
-

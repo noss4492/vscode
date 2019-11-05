@@ -26,12 +26,14 @@ public class UserViewSlot implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		System.out.println("테스트중입니다.");
+		System.out.println("테스트중입니다. col : "+this.col);
 		int c = 0;
 		int k = 0;
-		for (int i = 0; i < Math.random()*300; i++) {
+		int d = 1;
+		double tmpR = 0;
+		for (int i = 0; i < (tmpR = Math.random()*300); i++) {
 			for (int j = 0; j < 9; j++) {
-				c = j;		// c 는 (약간 야매로) 계속 0, 1, 2 를 지정하면서 이미지 갱신함
+				c = j;		
 				k = j+i;	// k 는 i값에 의해 옆으로 한칸씩 밀림
 				// c : 012012012 012012012 012012012 012012012 012012012
 				// k : 012345678 123456780 234567801 345678012 456780123
@@ -40,12 +42,19 @@ public class UserViewSlot implements Runnable {
 				if(j>=3)
 					c = j%3;
 				try {
-					Thread.sleep(10);
+					Thread.sleep(d);
 					btnSlot[col][c].setIcon(img[col][k]);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
+			if(i <= 50)
+				continue;
+			else {
+				if(i >= (int)tmpR-50)
+					d=d++;		// 0 -> 20ms
+			}
+				
 		}
 	}
 }

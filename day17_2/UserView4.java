@@ -18,13 +18,14 @@ public class UserView4 extends Thread {//implements Runnable
 
 	@Override
 	public void run() {
+		int delay = 0;
 		// TODO Auto-generated method stub
 		System.out.println("»ý¼ºµÊ");
 		for (int j = 0; j < 70; j++) {
 			Lotto lot = new Lotto();
 			for (int i = 0; i < 6; i++) {
 				try {
-					Thread.sleep(10);
+					Thread.sleep(delay);
 					lot.shuffle();
 					viewNum = lot.get();
 					jbtn[i].setIcon(img[viewNum[i]]);
@@ -33,6 +34,11 @@ public class UserView4 extends Thread {//implements Runnable
 					e1.printStackTrace();
 				}
 			}
+			if(j<=35)
+				continue;
+			else
+				if(delay<=35)
+					delay++;
 		}
 	}
 }

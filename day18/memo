@@ -1,0 +1,47 @@
+
+I/O 
+(Stream)
+
+stream 
+(개울 시냇물 흐름....)
+단방향성
+느리다
+buffer 사용하면 좀 빨라짐
+
+크게 나누면
+Byte Stream // Char Stream
+
+
+Byte Stream	// 추상추상
+	InputStream
+		FileInputStream
+			read()				//overriden
+		BufferedInputStream
+		DataInputStream
+	Output
+		FileOutputStream
+			write()				//overriden
+		BufferedOutputStream
+		DataOutputStream
+			
+InputStream과 Reader를 연결해주는 InputStreamReader
+............................ OutputStreamWriter
+
+			
+Char Stream	// 마찬가지로 추상추, 주로 한글 읽을 때
+	Reader
+		FileReader
+		BufferedReader
+	Writer
+		FileWriter
+		BufferedWriter
+	
+	
+	
+	
+	
+	
+BufferedInputStream(InputStream in)
+
+InputStream in
+부모니까 자손 참조값 다 받아 줄 수 있는건 맞지 근데 왜 이렇게 만들었나?
