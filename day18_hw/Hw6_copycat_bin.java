@@ -3,10 +3,14 @@ package day18_hw;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,10 +19,9 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class Hw6_copycat extends JFrame implements ActionListener {
+public class Hw6_copycat_bin extends JFrame implements ActionListener {
 	// 라벨 2개 텍필 2개 버튼 2개
 	// 버튼 1개
 	final static int WIDTH = 800;
@@ -37,7 +40,7 @@ public class Hw6_copycat extends JFrame implements ActionListener {
 	Font f1 = new Font("MyFont", Font.PLAIN, 30);
 	Font f2 = new Font("MyFont", Font.PLAIN, 100);
 
-	public Hw6_copycat() {
+	public Hw6_copycat_bin() {
 		super("미련한 복사기");
 		setLayout(null);
 
@@ -80,7 +83,7 @@ public class Hw6_copycat extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		Hw6_copycat copycat = new Hw6_copycat();
+		Hw6_copycat_bin copycat = new Hw6_copycat_bin();
 
 	}
 
@@ -95,29 +98,29 @@ public class Hw6_copycat extends JFrame implements ActionListener {
 			// filereader bufferedreader .read
 			// filewriter bufferedwriter .write .flush
 			try {
-				File target = new File(tf1.getText());
+//				File target = new File(tf1.getText());
+				String target = tf1.getText();
 				System.out.println(tf1.getText());
-				FileReader fr;
-				fr = new FileReader(target);
-				
-				File replica = new File(tf2.getText());
-				FileWriter fw = new FileWriter(replica);
-				BufferedWriter bw = new BufferedWriter(fw);
 
-				int value;
-				StringBuffer strbuf = new StringBuffer();
-				// String은 너무 immutable 객체의 약점이 강하게 들어남
-				
+				FileInputStream fis = new FileInputStream(target);
+				BufferedInputStream br = new BufferedInputStream(fis);
+
+//				File replica = new File(tf2.getText());
+				String replica = tf2.getText();
+				FileOutputStream fos = new FileOutputStream(replica);
+				BufferedOutputStream bw = new BufferedOutputStream(fos);
+
+				int data;
 				// 모든 확장자의 파일을 복사하여야 할 목적이 있으므로 byte로 옮김
-				
 
-//				while ((value = br.read()) != -1) {
-//					strbuf.append((char) value);
-//				}
-				System.out.println(strbuf);
+				while ((data = fis.read()) != -1) {
+					bw.write(data);
+					bw.flush();
+				}
 
+				System.out.println("복사본 생성됨" + replica);
 				// 만약 파일이 중복된다면 다일얼로그 하나 더 생성해서 경고창 만듬
-				boolean isExists = replica.exists();
+//				boolean isExists = replica.exists();
 
 //				if (isExists) {
 //					int rsp = JOptionPane.showConfirmDialog(this, "이미 경로에 똑같은 파일이 있습니다. 저장하시겠습니까?", "메모장",
@@ -131,12 +134,11 @@ public class Hw6_copycat extends JFrame implements ActionListener {
 //					bw.write(strbuf.toString());
 //					bw.flush();
 //				}
-				bw.write(strbuf.toString());
 				bw.flush();
-//				br.close();
-				fr.close();
+				br.close();
 				bw.close();
-				fw.close();
+				fis.close();
+				fos.close();
 
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -145,19 +147,35 @@ public class Hw6_copycat extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
 		} else if (obj.equals(btnLoad)) {
 			JFileChooser jfc = new JFileChooser(); // filechooser 생성
 			jfc.showOpenDialog(this); // show chooser dialog
 			File target = jfc.getSelectedFile(); // 선택된 파일을 객체로 받음
 			this.tf1.setText(target.getAbsolutePath()); // 절대경로 생성
-			System.out.println(target.getName());
+//			System.out.println(target.getName());
 		} else if (obj == btnSave) { // 위의 load경로 지정과 같은 문제로 볼 수 있음.
 			JFileChooser jfc = new JFileChooser();
 			jfc.showOpenDialog(this);
 			File target = jfc.getSelectedFile();
-			this.tf2.setText(target.getAbsolutePath());
-			System.out.println(target.getName());
+//			String tmpPath = target.getAbsolutePath();
+//			int pos = tmpPath.lastIndexOf('.');
+//			String tmpSubPath = tmpPath.substring(pos, tmpPath.length()-1);
+			
+			String tmpTxt1 = tf1.getText();
+			String tmpTxt2 = target.getAbsolutePath();
+			
+			if(!tmpTxt1.isEmpty()) {
+				int pos1 = tmpTxt1.lastIndexOf('.');
+				if(tmpTxt1.lastIndexOf('.') != -1) {
+					String ext = tmpTxt1.substring(pos1, tmpTxt1.length());
+					System.out.println("ext"+ext);
+					tmpTxt2 += ext;
+				}
+			}
+			this.tf2.setText(tmpTxt2);
+//			target.getAbsolutePath().substring(pos, target.getAbsolutePath().length());
+//			this.tf2.setText(target.getAbsolutePath().substring(pos, target.getAbsolutePath().length()));
+//			System.out.println(target.getName());
 		}
 	}
 }
