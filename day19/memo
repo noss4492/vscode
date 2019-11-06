@@ -1,0 +1,53 @@
+I/O Stream
+
+Byte Stream
+	InputStream
+		FileInputStream
+		BufferedInputStream
+		DataInputStream
+		ObjectInputStream
+	OutputStream
+		FileOutputStream
+		BufferedOutputStream
+		DataOutputStream
+		ObjectOutputStream
+		+PrintStream
+Char Stream
+	Reader
+		FileReader
+		BufferedReader
+	Writer
+		FileWriter
+		BufferedWriter
+		+PrintWriter
+		
+		// Object I/O
+		// NotSerializableException 발생. 
+		// 잘게 쪼개서 다시 원상태로 만드는 것이 직렬화(라고 불리는 이름으로 쓰임, 태세우스의 배 같은 상황임)
+		// 대상 객체를 serializable 상태로 만들면 됨.(시리얼라이저블 임플리먼트)
+		
+		// private transient String pw; ->> 객체를 I/O할때 얘는 예외됨. (숨기고 싶은 거 이러케)
+		// 직렬화 대상에서 제외해 transient(일시적인,순간적인,일시적으로머무르는) 담고있는 값 이동되지 않음
+		
+//////////////////////////////////////////////////////////////////////////////////////
+Network
+
+OS
+
+protocol - TCP/IP => 라우터 거쳐서 나갈 수 있음
+		 - UDP 
+		 - IPX/SPX => 라우터 통과 x
+		 - HTTP HTTPS SMTP FTP ...
+
+
+공인IP
+사설IP
+
+
+
+
+
+
+
+
+		
