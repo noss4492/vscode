@@ -1,0 +1,17 @@
+C:\app\ln4so\product\11.2.0\dbhome_1\jdbc\lib에 있는 JDBC driver를 사용
+
+C:\Program Files\Java\jre1.8.0_221\lib\ext에 복사
+
+따 키
+
+아예 처리할 순서를 주석으로 써놓고 쓰자
+맨날 이 순서대로 처리된다.
+
+//1. 변수 선언
+//2. JDBC 드라이버가 로딩 되어 있는지 체크한다
+//3. DB에 연결을 한다.(Connection)
+//4. SQL문을 작성
+//5. 문장 객체를 생성하고
+//6. 실행(Select ==> ResultSet)
+//7. 다 했다면 레코드별로 내가 하고싶은 처리를 한다.
+//8. 다 썼다면 자원을 반납하자.

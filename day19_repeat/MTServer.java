@@ -1,5 +1,11 @@
 package day19_repeat;
 
-public class MTServer {
+import java.net.Socket;
 
+public class MTServer extends Thread {
+	Socket cliSo;
+	
+	MTServer(Socket client){
+		this.cliSo = client;
+	}
 }

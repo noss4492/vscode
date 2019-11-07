@@ -2,7 +2,9 @@ package day19_repeat;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -76,7 +78,7 @@ public class ChatClient extends JFrame implements ActionListener, KeyListener, R
 		cl = new CardLayout();
 		
 		
-		// 스크롤패널에 채팅창 붙
+		
 		
 		
 		// 1번 패널(로그인창)
@@ -107,7 +109,7 @@ public class ChatClient extends JFrame implements ActionListener, KeyListener, R
 
 		jpSouth = new JPanel();		// 채팅창이 될 아이
 		jtf = new JTextField(40);	// 사용자 채팅 입력창
-		jta = new JTextArea();		// 채팅창
+		jta = new JTextArea();		// 채팅창 + 스크롤패널에 채팅창 붙
 		jsp = new JScrollPane(jta, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		jp2.setLayout(new BorderLayout());	// 채팅창 레이아웃은 보더레이아웃
@@ -116,6 +118,49 @@ public class ChatClient extends JFrame implements ActionListener, KeyListener, R
 		jpSouth.add(jtf);
 		jpSouth.add(jbtnSend);
 		jbtnSend = new JButton("전송");
+		
+		
+		setBounds(100, 100, 600, 800);	//프레임 사이즈
+
+		jbtnLogin.addActionListener(this);	// 로그인 누르면 (연결되면) 다음 창으로 카드 넘기기
+		jbtnExit.addActionListener(this);	// 엑싯 누르면 종료
+		jbtnSend.addActionListener(this);	// 샌드 누르면 내 아웃풋스트림 플러시
+		jtf.addKeyListener(this);			// 텍스트필드 키 리스너로써 
+		
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 	

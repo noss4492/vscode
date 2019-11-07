@@ -20,8 +20,8 @@ public class ChatServer {
 				// 멀티쓰레드로 처리
 				// 통신 동작을 담당하는 객체 MTServer
 				
-				MTServer ms = new MTServer(clientSo);
-				ms.start();
+//				MTServer ms = new MTServer(clientSo);
+//				ms.start();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
