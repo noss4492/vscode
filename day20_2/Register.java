@@ -1,5 +1,8 @@
 package day20_2;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,7 +11,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Register extends JFrame{
+public class Register extends JFrame implements ActionListener{
 	JLabel jlId, jlPw, jlName, jlGender, JlMot;
 	JTextField jtfId, jtfPw, jtfName, jtfMot;
 	JTextArea jtaMot;
@@ -71,8 +74,20 @@ public class Register extends JFrame{
         add(jlId); add(jlPw); add(jlName); add(jlGender); add(JlMot); add(jtfId); add(jtfPw);
         add(jtfName); add(jtaMot); add(jbtnRegister); 
 		
+        
+        jbtnRegister.addActionListener(this);
+        
         setBounds(100, 100, WIDTH, HEIGHT);
-		setTitle("회원가입");
 		setVisible(true); //끝나면 인비저블 하고 다른거 비지블로 ㄱㄱ
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+		if(obj == jbtnRegister) {
+			
+			this.setVisible(false);
+			new NewLogin();
+		}
 	}
 }

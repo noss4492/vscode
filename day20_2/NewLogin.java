@@ -138,13 +138,10 @@ public class NewLogin extends JFrame implements ActionListener {
 			StringBuffer sql = new StringBuffer();
 			this.setVisible(false);
 			new Register();
-//카드레이아웃			
+		}
+	}
+}
 			
 			
 //			sql.append("INSERT INTO ROOMSIX ");
 //			sql.append("VALUES ('"+jtfId.getText()+"', '"+jtfName.getText()+"', '"")
-		}
-
-	}
-
-}
