@@ -1,4 +1,4 @@
-package day20_2;
+package day20_InMyMind;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,16 +7,20 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Register extends JFrame implements ActionListener{
 	JLabel jlId, jlPw, jlName, jlGender, JlMot;
 	JTextField jtfId, jtfPw, jtfName, jtfMot;
+	JScrollPane jspMot;
 	JTextArea jtaMot;
 	JButton jbtnRegister;
 	JRadioButton jrbGender1, jrbGender2;
+	String uid, uPw, uName, uGender, uMot;
 	static final int WIDTH = 400;
 	static final int HEIGHT = 550;
 	static final int OUTTER_MARGIN = 30;
@@ -43,7 +47,9 @@ public class Register extends JFrame implements ActionListener{
 		jtfPw= new JTextField();
 		jtfName= new JTextField();
 		jtaMot= new JTextArea();
-		jbtnRegister= new JButton("등록");
+		jspMot = new JScrollPane(jtaMot, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		jbtnRegister= new JButton("확인");
 		
 		ButtonGroup bgGender = new ButtonGroup();
 		jrbGender1 = new JRadioButton("남");
@@ -84,9 +90,12 @@ public class Register extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if(obj == jbtnRegister) {
-			
 			this.setVisible(false);
 			new NewLogin();
+			// 등록버튼을 누르면 ~ 창을 안보이게 해서 로그인창을 다시 띄우고.
+			// 내가 쓴 정보를 DB에 등록해야함.
+			
+			
 		}
 	}
 }

@@ -62,16 +62,9 @@ public class MTServer extends Thread{
 				pw.println(msg);
 				pw.flush();
 			}
-			
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
-	
-	
 }
