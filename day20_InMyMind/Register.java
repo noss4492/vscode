@@ -20,7 +20,6 @@ public class Register extends JFrame implements ActionListener{
 	JTextArea jtaMot;
 	JButton jbtnRegister;
 	JRadioButton jrbGender1, jrbGender2;
-	String uid, uPw, uName, uGender, uMot;
 	static final int WIDTH = 400;
 	static final int HEIGHT = 550;
 	static final int OUTTER_MARGIN = 30;
@@ -90,10 +89,13 @@ public class Register extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if(obj == jbtnRegister) {
-			this.setVisible(false);
+			// 등록버튼을 누르면 ~ 창을 안보이게 / 로그인창이 다시 보이게
+			// 내가 쓴 정보를 DB에 등록 / 
+			//String uid, String uPw, String uName, String uGender, String uMot) {
+			//jtfId, jtfPw, jtfName, jtfMot; jtaMot
+
 			new NewLogin();
-			// 등록버튼을 누르면 ~ 창을 안보이게 해서 로그인창을 다시 띄우고.
-			// 내가 쓴 정보를 DB에 등록해야함.
+			this.setVisible(false);
 			
 			
 		}

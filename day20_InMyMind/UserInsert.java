@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 // 아직 안 보고 하기에는 무리가 있다... 하다가 막히면 주석을 보고 참고하자.
 //1. 변수 선언 ㅇㅋ
 //2. JDBC 드라이버가 로딩 되어 있는지 체크한다 ㅇㅋ
@@ -17,15 +19,16 @@ import java.sql.SQLException;
 //7. 다 했다면 레코드별로 내가 하고싶은 처리를 한다.
 //8. 다 썼다면 자원을 반납하자.
 
-public class UserInsert {
+public class UserInsert extends Register{
 	String uPw;
 	String uName;
 	String uGender;
 	String uMot;
 	static String uid;
-	static String[] allUsersId = null;
+	static String[] allUsersId = null;	// 이걸 굳이 arraylist에 담을 이유가 있을까
 	
 	public UserInsert(String uid, String uPw, String uName, String uGender, String uMot) {
+		super();
 		this.uid = uid;
 		this.uPw = uPw;
 		this.uName = uName;
@@ -74,51 +77,57 @@ public class UserInsert {
 		//this.uid와 allUsersId 비교해서 조회
 		for(int i = 0; i < allUsersId.length; i++) {
 			if(uid.equalsIgnoreCase(allUsersId[i])) {
-				// 다이얼로그를 띄우고 종료버튼 누르면 창 종료해줌.
+				// 중복이면 다이얼로그를 띄우고
+//				int rsd = JOptionPane.showConfirmDialog(this, "넌 누구임", "아무튼 틀림", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
+		// 중복체크를 통과하면 회원가입 진행.
 		
 		
-		
-		
-		// SQL문을 작성하고
-		StringBuffer sb = new StringBuffer();
-		sb.append("INSERT INTO ROOMSIX ");
-		sb.append("VALUE( ? , ? , ? , ? , ? ) ");
-		//5. 문장 객체를 생성하고
-		//6. 실행(Select ==> ResultSet)
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-//		String uid = 
-		try {
-			// (컴파일 전 단계) preparedStatement를 준비
-			pstmt = conn.prepareStatement(sb.toString());
-			// injection이 불가능하도록, junct는 JC에서의 분기점에서 삽입되는 그런 의미가 있음
-			
-			// 미리 받아서 만들자
-			
-			pstmt.setString(1, "id");
-			pstmt.setString(2, "pw");
-			pstmt.setString(3, "name");
-//			pstmt.setString(4, "남":"여");
-			pstmt.setString(5, "mot");
-			rs = pstmt.executeQuery();
-			
-			
-			
-			// 만약 rs.getString("id");해서 가져온 id값을 조회했는데
-			// 똑같은 아이디가 있다면 안된다고 하는 다이얼로그를 생성한다.
-			
-			// 이제 내맘대로 
-			// 7. 다 했다면 레코드별로 내가 하고싶은 처리를 한다.
-			// 근데 insert만 하면 끝이잖아? 할 일이 없다.
-			// 한다고 해도 다이얼로그 생성 정도 ?
-			
-		} catch (SQLException e) {
-			System.out.println("SQL을 똑바로 쓰시오");
-		}
-		//8. 다 썼다면 자원을 반납하자.
-//		if
 	}
 }
+
+		
+		
+		
+//		// SQL문을 작성하고
+//		StringBuffer sb = new StringBuffer();
+//		sb.append("INSERT INTO ROOMSIX ");
+//		sb.append("VALUE( ? , ? , ? , ? , ? ) ");
+//		//5. 문장 객체를 생성하고
+//		//6. 실행(Select ==> ResultSet)
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+////		String uid = 
+//		try {
+//			// (컴파일 전 단계) preparedStatement를 준비
+//			pstmt = conn.prepareStatement(sb.toString());
+//			// injection이 불가능하도록, junct는 JC에서의 분기점에서 삽입되는 그런 의미가 있음
+//			
+//			// 미리 받아서 만들자
+//			//radio[0].getText()
+//			pstmt.setString(1, "id");
+//			pstmt.setString(2, "pw");
+//			pstmt.setString(3, "name");
+////			pstmt.setString(4, "남":"여");
+//			pstmt.setString(5, "mot");
+//			rs = pstmt.executeQuery();
+//			
+//			
+//			
+//			// 만약 rs.getString("id");해서 가져온 id값을 조회했는데
+//			// 똑같은 아이디가 있다면 안된다고 하는 다이얼로그를 생성한다.
+//			
+//			// 이제 내맘대로 
+//			// 7. 다 했다면 레코드별로 내가 하고싶은 처리를 한다.
+//			// 근데 insert만 하면 끝이잖아? 할 일이 없다.
+//			// 한다고 해도 다이얼로그 생성 정도 ?
+//			
+//		} catch (SQLException e) {
+//			System.out.println("SQL을 똑바로 쓰시오");
+//		}
+//		//8. 다 썼다면 자원을 반납하자.
+////		if
+//	}
+//}
