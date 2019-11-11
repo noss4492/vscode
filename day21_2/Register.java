@@ -130,6 +130,7 @@ public class Register extends JFrame implements ActionListener {
 			System.out.println(jrbGender1);
 			System.out.println(jrbGender2);
 			Object[] obj2 = jrbGender1.getSelectedObjects();
+			Object[] obj3 = jrbGender2.getSelectedObjects();
 			for (Object x : obj2) {
 				System.out.println(">"+x);
 			}
