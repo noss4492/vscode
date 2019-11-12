@@ -16,13 +16,12 @@ public class BackgroundTest extends JFrame {
 	// The Image to store the background image in.
 	Image img;
 	ImageIcon imgIcon= new ImageIcon("src/images/money_cat.jpeg");
-	
+	JLabel jl = new JLabel(imgIcon);
 
 	public BackgroundTest() {
 		// Loads the background image and stores in img object.
 		img = Toolkit.getDefaultToolkit().createImage("src/images/money_cat.jpeg");
-//		this.setContentPane(new JLabel(new ImageIcon(img)));
-		this.setContentPane(new JLabel(imgIcon));
+		this.setContentPane(jl);
 		setSize(500, 500);
 		setVisible(true);
 	}
