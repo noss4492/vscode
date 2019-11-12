@@ -6,11 +6,11 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class AAAaaa extends Frame
-{
+public class AAAaaa extends Frame implements MouseMotionListener {
     MyCanvas can;
     public AAAaaa() {
         super("");
@@ -20,9 +20,9 @@ public class AAAaaa extends Frame
         add(can);
         can.setBackground(Color.lightGray);
  
-        // 캔버스에 리스너 부착----
-        MyHandler my = new MyHandler();
-        can.addMouseMotionListener(my);
+//        MyHandler my = new MyHandler();
+//        can.addMouseMotionListener(my);
+        can.addMouseMotionListener(this);
  
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e){
@@ -31,14 +31,14 @@ public class AAAaaa extends Frame
         });
  
     }//생성자-----
-    class MyHandler extends MouseMotionAdapter
-    {
-        public void mouseDragged(MouseEvent e) {
-            can.x=e.getX();
-            can.y=e.getY();
-            can.repaint();
-        }
-    }////////////////
+//    class MyHandler extends MouseMotionAdapter
+//    {
+//        public void mouseDragged(MouseEvent e) {
+//            can.x=e.getX();
+//            can.y=e.getY();
+//            can.repaint();
+//        }
+//    }////////////////
  
     public static void main(String[] args)
     {
@@ -46,6 +46,19 @@ public class AAAaaa extends Frame
         d.setSize(500, 500);
         d.setVisible(true);
     }
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		can.x=e.getX();
+        can.y=e.getY();
+        can.repaint();		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
  
 class MyCanvas extends Canvas
