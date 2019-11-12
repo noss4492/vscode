@@ -1,7 +1,8 @@
-package myPlayGround;
+package myP;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -12,38 +13,38 @@ import java.awt.event.WindowEvent;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 // 아마 한 패널에 채팅창과 이 페인터를 붙여서 쓴다고 생각해보면 얘도 쓰레드로 구성되어야 할 것이다.
 // 근데 일단 패널을 주고 받는 기능을 구현한다면
 // 이 패널을 주고 받는 애를 쓰레드로 만들면 될 것이다.
 
-public class __1_SavePainter extends Frame implements MouseMotionListener, 
-															MouseListener{	// 아마 러너블 ㄱ
+public class _1SavePainter extends Frame implements MouseMotionListener, 
+															MouseListener, Runnable{
 	DrawCanvas drawCanvas; // 내부 중첩 클래스로 할 필요는 없지만
-	JPanel jp1;
+	JPanel mirrorPane;
 	Socket server;
 	String ip = "192.168.0.49";
 	int port = 5000;
+	JFrame frame = new JFrame("");
+	Container c;
 
-	public __1_SavePainter() {
-		jp1 = new JPanel();
+	public _1SavePainter() {
 		setLayout(null);
 
+		mirrorPane = new JPanel();
 		drawCanvas = new DrawCanvas();
-//		jp1.setLayout(null);
-//		jp1.setBounds(0, 0, 400, 400);
-//		jp1.add(drawCanvas);
+		
+		mirrorPane.setLayout(null);
+		mirrorPane.setBounds(0, 0, 500, 500);	// is 
+		mirrorPane.add(drawCanvas);
 
-		drawCanvas.setBounds(0, 0, 400, 400);
+		drawCanvas.setBounds(0, 0, 500, 500);
 		drawCanvas.setBackground(Color.GRAY); // 일단 배경색 이걸로 해둠(구분을 위해)
 		add(drawCanvas); // 그림판 캔버스 생성함
-		
-//		jp1.setLocation(500,500);
 
 		drawCanvas.addMouseMotionListener(this); // mouse dragged시 위치 감지를 위해
 		drawCanvas.addMouseListener(this);
@@ -52,6 +53,13 @@ public class __1_SavePainter extends Frame implements MouseMotionListener,
 				System.exit(0);
 			}
 		});
+		
+		setSize(500,500);
+		setVisible(true);
+	}
+	
+	public void createSendPan(DrawCanvas drawCanvas) {
+		mirrorPane = new JPanel();
 	}
 
 	@Override
@@ -77,7 +85,7 @@ public class __1_SavePainter extends Frame implements MouseMotionListener,
 
 		// 점의 연속으로 표현함. 이를 선으로 잇는 알고리즘은 추후에
 		public void myPaint(Graphics g) {
-			changeColorBK(g);
+			changeColorR(g);
 			g.fillOval(x - 5, y - 5, 10, 10);
 		}
 
@@ -135,6 +143,46 @@ public class __1_SavePainter extends Frame implements MouseMotionListener,
 //			e1.printStackTrace();
 //		} catch (IOException e1) {
 //			e1.printStackTrace();
-//		}								
+//		}						
+//		jp1 = new JPanel();
+		
+		
+//		Container conn = this.get
+//		OutputStream os = solver.getOutputStream()
+//		ObjectOutputStream oos = new ObjectOutputStream();
+//		BufferedWriter bw = new BufferedWriter(oos);
+
+		
+		Socket solver;
+		try {
+			solver = new Socket(ip, port);
+			BufferedOutputStream bos = new BufferedOutputStream(solver.getOutputStream());
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			oos.writeObject(this.getFrames());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	public _1SavePainter clone() {
+		_1SavePainter copy1 = null;
+		try {
+			copy1 = (_1SavePainter) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return copy1;
+	}
+	
+	
+	public static void main(String[] args) {
+		_1SavePainter s1 = new _1SavePainter();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }
