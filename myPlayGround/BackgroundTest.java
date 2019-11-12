@@ -20,7 +20,6 @@ public class BackgroundTest extends JFrame {
 
 	public BackgroundTest() {
 		// Loads the background image and stores in img object.
-		img = Toolkit.getDefaultToolkit().createImage("src/images/money_cat.jpeg");
 		this.setContentPane(jl);
 		setSize(500, 500);
 		setVisible(true);
@@ -35,3 +34,4 @@ public class BackgroundTest extends JFrame {
 		BackgroundTest g1 = new BackgroundTest();
 	}
 }
+//		img = Toolkit.getDefaultToolkit().createImage("src/images/money_cat.jpeg");
