@@ -1,4 +1,4 @@
-package day19_2;
+package modi;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -68,7 +68,7 @@ public class ChatClient extends JFrame implements ActionListener, KeyListener, R
 		jlbPort = new JLabel("PORT");
 		jbtnLogin = new JButton("로그인");
 		jbtnExit = new JButton("종료");
-		jtfIp = new JTextField("192.168.0.35");
+		jtfIp = new JTextField("192.168.0.49");
 		jtfPort = new JTextField("5000");
 		jta.setFont(f);
 
@@ -158,13 +158,6 @@ public class ChatClient extends JFrame implements ActionListener, KeyListener, R
 			jtf.setText("");
 			jtf.requestFocus();
 		}
-//					pw.println("");
-//					pw.flush(); // 요게 리슨에 주는 트리거 인가????? (이거는 아직 추측일 뿐임)
-//					Thread.sleep(50);
-//		}
-//			pw.println("");
-//		jtf.setText("");
-//		jtf.requestFocus();
 	}
 
 	@Override
@@ -190,9 +183,7 @@ public class ChatClient extends JFrame implements ActionListener, KeyListener, R
 		try {
 			s = new Socket(ip, port);
 			br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-
 			pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(s.getOutputStream()))); // Returns an output
-
 			String msg = null;
 			while (true) { // 그냥 클라 채팅창 텍스트에어리어 유지 시켜주는 구문임. soso
 				msg = br.readLine();
@@ -202,6 +193,7 @@ public class ChatClient extends JFrame implements ActionListener, KeyListener, R
 				sb.setValue(position);
 
 				jta.append(msg + "\n"); // 이거는 그냥 클라이언트 화면에 뿌려주는 용도고
+				System.out.println("S : "+s);
 			}
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
