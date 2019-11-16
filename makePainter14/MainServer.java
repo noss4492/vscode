@@ -74,7 +74,7 @@ import java.util.ArrayList;
 public class MainServer {
 	private ServerSocket ss; // 서버의 소켓
 	private ArrayList<Socket> clientSocketList = new ArrayList<Socket>(); // 연결된 클라이언트 소켓 배열을 담는다.
-	private ArrayList<UserInfoPacket> userinfo = new ArrayList<UserInfoPacket>(); // 위 소켓으로 유저 정보(상태)를 보내기 위해서
+	private ArrayList<UserInfo> userinfo = new ArrayList<UserInfo>(); // 위 소켓으로 유저 정보(상태)를 보내기 위해서
 	private ArrayList<MServer> msList = new ArrayList<MServer>(); // 클라이언트 담당 쓰레드 ArrayList
 	int examiner = 0; // 출제자 번호, 출제자 지정시 사용. 초기값 0번
 	int sPort = 5000;
@@ -156,7 +156,7 @@ public class MainServer {
 						}
 
 						// 새로운 유저가 가지게될 완성된 초기 userinfo (위치, 출제자인지, 닉네임, 포인트, 몬스터타입)
-						userinfo.add(new UserInfoPacket(min, wIsExaminer, nickname, 0, monType));
+						userinfo.add(new UserInfo(min, wIsExaminer, nickname, 0, monType));
 
 						System.out.println("잘 들어가고 있나 한번 확인함\nseq|isExaminer|nickname");
 						System.out.println("[순번:"+min+"]|[출제자:" + wIsExaminer + "]|[닉넴:" + nickname+"]");
@@ -329,6 +329,8 @@ public class MainServer {
 			}
 		}
 		void broadcastUserInfo() {
+			// 여기에 oos userInfo Object 해줘야할듯
+			
 		}
 	}
 }
