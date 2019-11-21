@@ -11,13 +11,15 @@ public class DrawMirrorThread extends Thread {
 	DrawCanvas dc;
 	ArrayList<Integer> x;
 	ArrayList<Integer> y;
+	ArrayList<Integer> color;
 
 	// ugGui.drawCanvas, x, y
-	public DrawMirrorThread(DrawCanvas dc, ArrayList<Integer> x, ArrayList<Integer> y) {
+	public DrawMirrorThread(DrawCanvas dc, ArrayList<Integer> color, ArrayList<Integer> x, ArrayList<Integer> y) {
 		super();
 		this.dc = dc;
 		this.x = x;
 		this.y = y;
+		this.color = color;
 	}
 
 	@Override
@@ -25,6 +27,7 @@ public class DrawMirrorThread extends Thread {
 		if (this.x.size() != 0) {
 			int i = 0;
 			while (i < x.size()) {
+				dc.setColorFlag(color.get(i));
 				dc.x = x.get(i);
 				dc.y = y.get(i);
 				dc.repaint();
@@ -40,6 +43,14 @@ public class DrawMirrorThread extends Thread {
 
 	public void setDc(DrawCanvas dc) {
 		this.dc = dc;
+	}
+
+	public ArrayList<Integer> getColor() {
+		return color;
+	}
+
+	public void setColor(ArrayList<Integer> color) {
+		this.color = color;
 	}
 
 	public ArrayList<Integer> getX() {

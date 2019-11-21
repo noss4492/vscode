@@ -29,31 +29,58 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class UserGameGUI extends JFrame implements ActionListener, KeyListener, MouseMotionListener, MouseListener {
-	JButton exit, Lpanel, Rpanel, clean, Aclean, black, blue, red, green;
+	JButton exit, clean, Aclean, black, blue, red, green, yellow, gradation;
 	JTextField time, word;
-	JLabel[] character = new JLabel[8];
-	JTextArea chat;
-	JPanel Cpanel, Dpanel;
-	JLabel top;
-	JButton btnSend;
+	JLabel[] jlCharacter = new JLabel[8];
+	JTextArea jtaChat;
+	JPanel dPanel;
+	JLabel questions;
+
 	JTextField inputTxt;
-	UserInfoPacket userinfo;
+
 	JScrollPane chatScroll;
-	Image imgchar;
+	ImageIcon char1Img, char2Img, char3Img, char4Img, exitImg;
+	JPanel background;
+	JLabel mainImg, txtTranGround, chatTranGround;
+
+//	JButton exit, Lpanel, Rpanel, clean, Aclean, black, blue, red, green;
+//	// Lpanel? Rpanel? 너넨 뭐고
+//	JTextField time, word;
+//	JLabel[] jlCharacter = new JLabel[8];
+//	
+//	JTextArea jtaChat;
+//	//draw 어딨음
+//	
+//	JPanel Cpanel, Dpanel;
+//	// Cpanel 왜 있음
+//	// background 없음
+//	
+//	JLabel top;
+//	// top은 왜 있음
+//	JButton btnSend;
+//	JTextField inputTxt;
+//	JScrollPane chatScroll;
+//	Image imgchar;
 
 	DrawCanvas drawCanvas;
+	UserInfoPacket userinfo;
 	Socket server;
-	ArrayList<Integer> strokePointArrX, strokePointArrY;
 	ObjectOutputStream oos;
 
-	UserGameGUI(Socket server, ObjectOutputStream oos) {
+	ArrayList<Integer> strokePointArrX, strokePointArrY, arrColorF;
+	String msg;
+	String nickname;
+
+	UserGameGUI(Socket server, ObjectOutputStream oos, String nickname) {
 		super("캐치 마인드 !");
 		strokePointArrX = new ArrayList<Integer>();
 		strokePointArrY = new ArrayList<Integer>();
+		arrColorF = new ArrayList<Integer>();
 		setResizable(false);
 		drawCanvas = new DrawCanvas();
 		this.server = server;
 		this.oos = oos;
+		this.nickname = nickname;
 
 		// 해상도 툴킷
 		Toolkit tool = Toolkit.getDefaultToolkit();
@@ -64,87 +91,115 @@ public class UserGameGUI extends JFrame implements ActionListener, KeyListener, 
 		int heightY = (int) (scr_Height / 2 - 960 / 2);
 
 		// 이미지
-		imgchar = tool.createImage("src/images/char1.gif");
+		char1Img = new ImageIcon("src/images/char1.gif");
+		char2Img = new ImageIcon("src/images/char2.gif");
+		char3Img = new ImageIcon("src/images/char3.gif");
+		char4Img = new ImageIcon("src/images/char4.gif");
+		mainImg = new JLabel(new ImageIcon("src/images/mainBack.jpg"));
 
 		// 컴포넌트 초기화
-		Dpanel = new JPanel();
-		Cpanel = new JPanel();
-
-		exit = new JButton("나가기");
-		for (int i = 0; i < 8; i++) {
-			character[i] = new JLabel(new ImageIcon(imgchar));
+		for (int i = 4; i < 8; i++) {
+			jlCharacter[i] = new JLabel(char1Img);
 		}
+		jlCharacter[0] = new JLabel(char1Img);
+		jlCharacter[1] = new JLabel(char2Img);
+		jlCharacter[2] = new JLabel(char3Img);
+		jlCharacter[3] = new JLabel(char4Img);
+		background = new JPanel();
+		dPanel = new JPanel();
 
-		black = new JButton("black");
-		blue = new JButton("blue");
-		red = new JButton("red");
-		green = new JButton("grean");
-		Lpanel = new JButton("왼쪽");
-		Rpanel = new JButton("오른쪽");
-		top = new JLabel(" 문제");
-		chat = new JTextArea();
-//		draw = new JTextArea("그림판");	// 그림판 canvas로 대체됨
-		clean = new JButton("지우기");
-		Aclean = new JButton("전체지우기");
+		exit = new JButton(new ImageIcon("src/images/exit.PNG"));
+
+		black = new JButton();
+		blue = new JButton();
+		red = new JButton();
+		green = new JButton();
+		yellow = new JButton();
+		gradation = new JButton("G");
+		questions = new JLabel(new ImageIcon("src/images/Questions.png"));
+		jtaChat = new JTextArea();
+		drawCanvas = new DrawCanvas();
+		clean = new JButton(new ImageIcon("src/images/Eraser.png"));
+		Aclean = new JButton(new ImageIcon("src/images/Aclean.png"));
 		time = new JTextField("time");
 		word = new JTextField("캐치마인드");
-		drawCanvas = new DrawCanvas();
 
-		btnSend = new JButton("전송");
 		inputTxt = new JTextField();
-		chatScroll = new JScrollPane(chat, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		chatScroll = new JScrollPane(jtaChat, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		// Color
+		Color purple = new Color(149,54,255);
 		black.setBackground(Color.black);
 		blue.setBackground(Color.blue);
 		red.setBackground(Color.red);
 		green.setBackground(Color.green);
-		top.setOpaque(true);
-		top.setBackground(Color.orange);
-		drawCanvas.setBackground(Color.white);
+		yellow.setBackground(Color.yellow);
+		gradation.setBackground(purple);
+		questions.setOpaque(true);
+		questions.setBackground(Color.orange);
+
+		// -- 투명도
+		Color tranX = new Color(0, 0, 0, 0);
+		Color tran = new Color(0, 0, 0, 80);
+		Color btnFontColor = new Color(3, 61, 88);
+		inputTxt.setOpaque(false);
+		jtaChat.setOpaque(false);
+		chatScroll.getViewport().setOpaque(false);
+		chatScroll.setOpaque(false);
+
+		chatTranGround = new JLabel();
+		chatTranGround.setOpaque(true);
+		chatTranGround.setBackground(tran);
+		chatTranGround.setBounds(180, 650, 900, 200);
+		add(chatTranGround);
+		txtTranGround = new JLabel();
+		txtTranGround.setOpaque(true);
+		txtTranGround.setBackground(tran);
+		txtTranGround.setBounds(180, 860, 810, 40);
+		add(txtTranGround);
 
 		// Font
 		Font f = new Font("휴먼엑스포", Font.BOLD, 20);
 		Font h = new Font("휴먼엑스포", Font.BOLD, 14);
 		word.setFont(f);
-		top.setFont(h);
+		questions.setFont(h);
 
 		// 컴포넌트 포지션
-		exit.setBounds(1140, 15, 80, 40);
-		time.setBounds(180, 15, 130, 40);
-		top.setBounds(840, 15, 40, 40);
-		word.setBounds(880, 15, 180, 40);
 		black.setBounds(180, 600, 70, 40);
 		blue.setBounds(260, 600, 70, 40);
 		red.setBounds(340, 600, 70, 40);
 		green.setBounds(420, 600, 70, 40);
-		clean.setBounds(820, 600, 120, 40);
+		yellow.setBounds(500,600,70,40);
+		gradation.setBounds(580, 600, 70, 40);
+		
+		exit.setBounds(1140, 15, 80, 30);
+		time.setBounds(180, 15, 130, 40);
+		questions.setBounds(830, 15, 50, 40);
+		word.setBounds(880, 15, 180, 40);
+		clean.setBounds(900, 600, 50, 40);
 		Aclean.setBounds(960, 600, 120, 40);
 
 		drawCanvas.setSize(900, 500);
-		Dpanel.setBounds(180, 90, 900, 500);
-		chat.setSize(900, 200);
-		chatScroll.setSize(900, 200);
+		dPanel.setBounds(180, 90, 900, 500);
+		jtaChat.setSize(900, 200);
+		chatScroll.setBounds(180, 650, 900, 200);
 		inputTxt.setBounds(180, 860, 810, 40);
-		btnSend.setBounds(1000, 860, 80, 40);
-		Cpanel.setBounds(180, 650, 900, 200);
-
-//		inputTxt.setBounds(r);
+		background.setSize(1280, 960);
+//				inputTxt.setBounds(r);
 		int x1 = 20;
 		int y1 = 90;
 		int x2 = 1100;
 		int y2 = 90;
-		for (int i = 0; i < 8; i++) {
 
+		for (int i = 0; i < 8; i++) {
 			if (i < 4) {
-				character[i].setBounds(x1, y1, 140, 160);
+				jlCharacter[i].setBounds(x1, y1, 140, 160);
 				y1 += 180;
 			} else {
-				character[i].setBounds(x2, y2, 140, 160);
+				jlCharacter[i].setBounds(x2, y2, 140, 160);
 				y2 += 180;
 			}
-
 		}
 
 		// Event add
@@ -154,44 +209,67 @@ public class UserGameGUI extends JFrame implements ActionListener, KeyListener, 
 		drawCanvas.addMouseMotionListener(this); // mouse dragged시 위치 감지를 위해
 		drawCanvas.addMouseListener(this);
 
+		yellow.addActionListener(this);
+		gradation.addActionListener(this);
+		black.addActionListener(this);
+		blue.addActionListener(this);
+		red.addActionListener(this);
+		green.addActionListener(this);
+		clean.addActionListener(this);
+		Aclean.addActionListener(this);
+
 		// Layout 초기화
 		setLayout(null);
-		Cpanel.setLayout(null);
-		Dpanel.setLayout(null);
+		dPanel.setLayout(null);
 
-		Cpanel.add(chatScroll);
-		Dpanel.add(drawCanvas);
+		dPanel.add(drawCanvas);
 		add(inputTxt);
-		add(btnSend);
 
 		add(exit);
-		add(Lpanel);
-		add(Rpanel);
 		add(black, Color.WHITE);
 		add(red, Color.WHITE);
 		add(green, Color.WHITE);
 		add(blue, Color.WHITE);
+		add(yellow);
+		add(gradation);
+		
 		add(clean);
 		add(Aclean);
-		add(top);
+		add(questions);
 		add(word);
 		add(time);
 
-		add(Cpanel);
-		add(Dpanel);
+		add(chatScroll);
+		add(dPanel);
 
-		add(btnSend);
 		add(inputTxt);
 		for (int i = 0; i < 8; i++) {
-			add(character[i]);
+			add(jlCharacter[i]);
 		}
+		background.add(mainImg);
+		add(background);
 
 		// window
-		chat.setEditable(false);
+		jtaChat.setEditable(false);
 		inputTxt.requestFocusInWindow();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(widthX, heightY, 1280, 960);
 		setVisible(true);
+	}
+
+
+	public void sendChatMsg() {
+		msg = inputTxt.getText();
+//		System.out.println(msg+"이거 서버로 보내는 메세지임");
+		try {
+			oos = new ObjectOutputStream(new BufferedOutputStream(server.getOutputStream()));
+			ChatPacket cp = new ChatPacket(nickname, msg);
+			oos.writeObject(cp);
+			oos.flush();
+			inputTxt.setText("");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// 페인트 -----------------
@@ -205,26 +283,45 @@ public class UserGameGUI extends JFrame implements ActionListener, KeyListener, 
 
 	// main ------------------
 
-	// Action Event -----------------------
+	// ActionEvent start -----------------------------------------
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object obj = arg0.getSource();
 		if (obj == exit) {
 			setVisible(false);
 			new GameClient();
+		} else if (obj == red) { // rgb -> 색상정보를 좌표패킷에 담아서 같이 보내자
+			drawCanvas.colorFlag = 0;
+//			drawCanvas.repaint();
+		} else if (obj == green) {
+			drawCanvas.colorFlag = 1;
+		} else if (obj == blue) {
+			drawCanvas.colorFlag = 2;
+		} else if (obj == black) {
+			drawCanvas.colorFlag = 3;
+		} else if (obj == clean) {
+			drawCanvas.colorFlag = 4;
+		} else if (obj == Aclean) { // 이거 올 클리어 호출되면 통신패킷으로 보내야하네 (컬러플래그5면 전체삭제 호출로 바꾸자)
+			drawCanvas.colorFlag = 5;
+			drawCanvas.callClearAll();
+//			drawCanvas.setSuperBrush();
+			drawCanvas.repaint();
+			// 이때 보내야...
 		}
-	}// Action Event end -----------------------------
 
-	@Override
-	public void keyTyped(KeyEvent e) {
+		// yellow, white(지우개??) 추가점
 	}
+
+//		else if (obj == btnSend) {	// 있었는데요... 없어졌습니다 일부러 없애신건가 ' '?
+//			sendChatMsg();
+//		}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		if (keyCode == 10) {
+			sendChatMsg();
+		}
 	}
 
 	@Override
@@ -233,86 +330,118 @@ public class UserGameGUI extends JFrame implements ActionListener, KeyListener, 
 		drawCanvas.y = e.getY();
 		strokePointArrX.add(e.getX());
 		strokePointArrY.add(e.getY());
-		System.out.print("[Clicked][X,Y]=[" + e.getX() + "," + e.getY() + "]");
-//		System.out.println("x추가중 "+strokePointArrX);
-//		System.out.println("y추가중 "+strokePointArrY);
+		arrColorF.add(drawCanvas.getColorFlag());
 		drawCanvas.repaint();
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		System.out.println("try streamout. [data] from UserGameGUI to SERVER");
-//		System.out.println("연결 대상(서버) ip:"+server.getInetAddress().getHostAddress()+"|포트:"+server.getPort());
-
-//		System.out.println("---------------------");
-//		for(int i = 0; i<strokePointArrX.size(); i++)
-//			System.out.println(strokePointArrX.get(i));
-//		System.out.println("---------------------");
-
-//		BufferedOutputStream bos;
-//		ObjectOutputStream oos;
-//		OutputStream os;
-//			os = server.getOutputStream();
-//			bos = new BufferedOutputStream(os);
-		/////////////////////// 잠깐닫음/////////////
-//		try {
-//			oos = new ObjectOutputStream(new BufferedOutputStream(server.getOutputStream()));
-//			BoxedStrokePoint pp = new BoxedStrokePoint(strokePointArrX, strokePointArrY);
-//			oos.writeObject(pp);
-//			oos.flush();
-//			System.out.println("BoxedStrokePoint pp : "+pp);
-//			strokePointArrX.clear();
-//			strokePointArrY.clear();
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
-		/////////////////////// 잠깐닫음/////////////
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) { // 마우스 드래그시 좌표 정보를 누적
+	public void mouseDragged(MouseEvent e) { // 마우스 드래그시 좌표에 점을 찍으면서, 그 좌표 정보를 누적, 서버로 보냄
 		drawCanvas.x = e.getX();
 		drawCanvas.y = e.getY();
 		strokePointArrX.add(e.getX());
 		strokePointArrY.add(e.getY());
-		System.out.print("[Dragged][X,Y]=[" + e.getX() + "," + e.getY() + "]");
-//		System.out.println("x추가중 "+strokePointArrX);
-//		System.out.println("y추가중 "+strokePointArrY);
+		arrColorF.add(drawCanvas.getColorFlag());
+
+		// 여기 추가됨 에러 나는 것 의심해볼 것
 		drawCanvas.repaint();
+		StrokePointPacket pp = new StrokePointPacket(arrColorF, strokePointArrX, strokePointArrY);
 		try {
 			oos = new ObjectOutputStream(new BufferedOutputStream(server.getOutputStream()));
-			BoxedStrokePoint pp = new BoxedStrokePoint(strokePointArrX, strokePointArrY);
 			oos.writeObject(pp);
 			oos.flush();
-			System.out.println("BoxedStrokePoint pp : " + pp);
-			strokePointArrX.clear();
-			strokePointArrY.clear();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		arrColorF.clear();
+		strokePointArrX.clear();
+		strokePointArrY.clear();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// 좌표는 보내는데 문제 없었음. 프로세스 자원이 모자르다면 여기에서까지 보내는 동작을 추가로 수행
 	}
+	// ActionEvent end --------------------------------------------
+} // Class end
 
-}
+//try {
+//Thread.sleep(1000);
+//for(int i = 0 ; i < 200; i ++) {
+//	Thread.sleep(10);
+//	if(i < 100)
+//		setBounds(widthX, heightY, 1280-i*100, 960-i*100);
+//	else
+//		setBounds(widthX, heightY, 1280-99*100+(i-99)*100, 960-99*100+(i-99)*100);
+//}
+//} catch (InterruptedException e) {
+//// TODO Auto-generated catch block
+//e.printStackTrace();
+//}
+//System.out.print("[Dragged][X,Y]=[" + e.getX() + "," + e.getY() + "]");
+//System.out.println("x추가중 "+strokePointArrX);
+//System.out.println("y추가중 "+strokePointArrY);
+//			System.out.println("BoxedStrokePoint pp : " + pp);
+//public void objToServer(Object obj){
+//	try {
+//		oos = new ObjectOutputStream(new BufferedOutputStream(server.getOutputStream()));
+//		oos.writeObject(obj);
+//		oos.flush();
+//	} catch (IOException e) {
+//		e.printStackTrace();
+//	}
+//}
+
+//System.out.println("try streamout. [data] from UserGameGUI to SERVER");
+//System.out.println("연결 대상(서버) ip:"+server.getInetAddress().getHostAddress()+"|포트:"+server.getPort());
+
+//System.out.println("---------------------");
+//for(int i = 0; i<strokePointArrX.size(); i++)
+//	System.out.println(strokePointArrX.get(i));
+//System.out.println("---------------------");
+
+//BufferedOutputStream bos;
+//ObjectOutputStream oos;
+//OutputStream os;
+//	os = server.getOutputStream();
+//	bos = new BufferedOutputStream(os);
+/////////////////////// 잠깐닫음/////////////
+//try {
+//	oos = new ObjectOutputStream(new BufferedOutputStream(server.getOutputStream()));
+//	BoxedStrokePoint pp = new BoxedStrokePoint(strokePointArrX, strokePointArrY);
+//	oos.writeObject(pp);
+//	oos.flush();
+//	System.out.println("BoxedStrokePoint pp : "+pp);
+//	strokePointArrX.clear();
+//	strokePointArrY.clear();
+//} catch (IOException e1) {
+//	e1.printStackTrace();
+//}
+/////////////////////// 잠깐닫음/////////////
+
+//System.out.print("[Clicked][X,Y]=[" + e.getX() + "," + e.getY() + "]");
+//System.out.println("x추가중 "+strokePointArrX);
+//System.out.println("y추가중 "+strokePointArrY);

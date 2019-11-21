@@ -29,7 +29,7 @@ public class HelloDukeMain extends JFrame implements Runnable{
             }
 
             @Override
-            public void update(Graphics g) {
+            public void update(Graphics g) { 
                 paint(g);
             }
             

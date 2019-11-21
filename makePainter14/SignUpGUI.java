@@ -1,15 +1,19 @@
 package makePainter14;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 
 public class SignUpGUI extends JFrame implements ActionListener {
 	JLabel txtId, txtPw, txtPwcon, txtName;
@@ -18,6 +22,9 @@ public class SignUpGUI extends JFrame implements ActionListener {
 	JButton btnSignup, btnCencel;
 	JButton btnChar1, btnChar2, btnChar3, btnChar4;
 
+	JPanel background;
+	JLabel backImg;
+	
 	String userId = null;
 	char[] pwd = null;
 	char[] pwd1 = null;
@@ -25,26 +32,37 @@ public class SignUpGUI extends JFrame implements ActionListener {
 	String charImage = null;
 	CatchMindDAO dao = new CatchMindDAO();
 	boolean flag = false;
-	
+
 	SignUpGUI() {
 		super("회원가입");
 
 		// Layout 초기화
 		setLayout(null);
+		
+		//툴킷
+		Toolkit tool = Toolkit.getDefaultToolkit();
+		Dimension dmen = tool.getScreenSize();
+		double scr_Width = dmen.getWidth();
+		double scr_Height = dmen.getHeight();
+		int widthX = (int)(scr_Width/2 - 610/2); 
+		int heightY = (int)(scr_Height/2 - 700/2);
 
 		// 컴포넌트 초기화
-		btnSignup = new JButton("가입");
-		btnCencel = new JButton("취소");
+		background = new JPanel();
+		backImg = new JLabel(new ImageIcon("src/images/signupBack.png"));
+		
+		btnSignup = new JButton(new ImageIcon("src/images/signup.png"));
+		btnCencel = new JButton(new ImageIcon("src/images/cencel.png"));
 
-		btnChar1 = new JButton("파이리");
-		btnChar2 = new JButton("꼬부기");
-		btnChar3 = new JButton("이상해씨");
-		btnChar4 = new JButton("피카츄");
+		btnChar1 = new JButton(new ImageIcon("src/images/char1.gif"));
+		btnChar2 = new JButton(new ImageIcon("src/images/char2.gif"));
+		btnChar3 = new JButton(new ImageIcon("src/images/char3.gif"));
+		btnChar4 = new JButton(new ImageIcon("src/images/char4.gif"));
 
-		txtId = new JLabel("아이디");
-		txtPw = new JLabel("비밀번호");
-		txtPwcon = new JLabel("비밀번호 확인");
-		txtName = new JLabel("닉네임");
+		txtId = new JLabel("        아이디");
+		txtPw = new JLabel("      비밀번호");
+		txtPwcon = new JLabel(" 비밀번호 확인");
+		txtName = new JLabel("         닉네임");
 
 		inputId = new JTextField();
 		inputPw = new JPasswordField();
@@ -52,30 +70,50 @@ public class SignUpGUI extends JFrame implements ActionListener {
 		inputName = new JTextField();
 
 		// 컴포넌트 포지션
-		btnSignup.setBounds(150, 550, 140, 50);
+		btnSignup.setBounds(160, 550, 140, 50);
 		btnSignup.addActionListener(this);
-		btnCencel.setBounds(300, 550, 140, 50);
+		btnCencel.setBounds(310, 550, 140, 50);
 		btnCencel.addActionListener(this);
 
-		btnChar1.setBounds(80, 400, 100, 120);
+		btnChar1.setBounds(10, 370, 140, 160);
 		btnChar1.addActionListener(this);
-		btnChar2.setBounds(190, 400, 100, 120);
+		btnChar2.setBounds(160, 370, 140, 160);
 		btnChar2.addActionListener(this);
-		btnChar3.setBounds(300, 400, 100, 120);
+		btnChar3.setBounds(310, 370, 140, 160);
 		btnChar3.addActionListener(this);
-		btnChar4.setBounds(410, 400, 100, 120);
+		btnChar4.setBounds(460, 370, 140, 160);
 		btnChar4.addActionListener(this);
 
-		txtId.setBounds(200, 120, 80, 30);
-		txtPw.setBounds(185, 190, 80, 30);
-		txtPwcon.setBounds(155, 230, 90, 30);
-		txtName.setBounds(200, 300, 80, 30);
+		txtId.setBounds(145, 120, 90, 30);
+		txtPw.setBounds(145, 190, 90, 30);
+		txtPwcon.setBounds(145, 230, 90, 30);
+		txtName.setBounds(145, 300, 90, 30);
 
-		inputId.setBounds(250, 120, 200, 30);
-		inputPw.setBounds(250, 190, 200, 30);
-		inputPwcon.setBounds(250, 230, 200, 30);
-		inputName.setBounds(250, 300, 200, 30);
+		inputId.setBounds(240, 120, 200, 30);
+		inputPw.setBounds(240, 190, 200, 30);
+		inputPwcon.setBounds(240, 230, 200, 30);
+		inputName.setBounds(240, 300, 200, 30);
 
+		background.setSize(610,700);
+		// Color
+		Color tran = new Color(0, 0, 0, 80);
+		txtId.setOpaque(true);
+		txtId.setBackground(tran);
+		txtId.setForeground(Color.white);
+		txtPw.setOpaque(true);
+		txtPw.setBackground(tran);
+		txtPw.setForeground(Color.white);
+		txtPwcon.setOpaque(true);
+		txtPwcon.setBackground(tran);
+		txtPwcon.setForeground(Color.white);
+		txtName.setOpaque(true);
+		txtName.setBackground(tran);
+		txtName.setForeground(Color.white);
+		inputId.setBorder(null);
+		inputPw.setBorder(null);
+		inputPwcon.setBorder(null);
+		inputName.setBorder(null);
+		
 		// 컴포넌트 add
 		add(btnSignup);
 		add(btnCencel);
@@ -95,9 +133,13 @@ public class SignUpGUI extends JFrame implements ActionListener {
 		add(inputPwcon);
 		add(inputName);
 
+		background.add(backImg);
+		add(background);
+		
 		// window
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(100, 50, 600, 700);
+		setUndecorated(true);
+		setBounds(widthX, heightY, 610, 700);
 		setVisible(true);
 
 	}
