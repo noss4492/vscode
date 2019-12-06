@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - BackTracking_nQueen2",
+            "request": "launch",
+            "mainClass": "__PlayGround__.BackTracking_nQueen2",
+            "projectName": "src_6a6f4952"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BackTracking_nQueen1",
+            "request": "launch",
+            "mainClass": "__PlayGround__.BackTracking_nQueen1",
+            "projectName": "src_6a6f4952"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BackTracking_nQueen",
+            "request": "launch",
+            "mainClass": "__playground.BackTracking_nQueen",
+            "projectName": "src_6a6f4952"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - TestSort",
             "request": "launch",
             "mainClass": "sortAlgorithm.TestSort",

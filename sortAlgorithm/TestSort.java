@@ -12,7 +12,7 @@ public class TestSort {
 		UserUtility u = new UserUtility(width);
 		UtilitesForSort.setViewFlag(false);			// 진행과정 보기 옵션
 		
-		int[] arr = u.randGenArr(width, 1, 10000000);	// width길이의 arr배열, a부터 b까지의 정수
+		int[] arr = u.randGenArr(width, 1, 1000);	// width길이의 arr배열, a부터 b까지의 정수
 		
 		int[][] arrCopy = new int[7][width];
 		for(int i = 0; i < 7; i++)

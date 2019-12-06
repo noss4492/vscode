@@ -6,7 +6,7 @@ public class QuickSortEndPivot extends UtilitesForSort {
 	private static long rCnt = 0;
 	
 	public static int[] sort(int arr[], int l, int r) {
-		//relaxing(arr, r);					// 전처리를 해주면 좀 좋아지지 않을까?
+		//relaxing(arr, r);					// 전처리를 해주면 좀 좋아지지 않을까? on/off
 		
 		long start = getTimeStart();
 		if(l<r) {
