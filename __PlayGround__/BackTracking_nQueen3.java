@@ -5,7 +5,7 @@ public class BackTracking_nQueen3 {
     static boolean[] flag_b = new boolean[15]; // /
     static boolean[] flag_c = new boolean[15]; // \
     static int[] pos = new int[8];
-
+    
     static void print(){
         for(int i=0; i<8; i++){
             System.out.printf("%2d", pos[i]);

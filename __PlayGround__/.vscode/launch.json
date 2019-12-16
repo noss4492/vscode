@@ -2,6 +2,19 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - HashTableSC",
+            "request": "launch",
+            "mainClass": "__PlayGround__.HashTable.HashTableSC",
+            "projectName": "src_6a6f4952"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HashTable1",
+            "request": "launch",
+            "mainClass": "__PlayGround__.HashTable.HashTable1"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - BackTracking_nQueen3",
             "request": "launch",
             "mainClass": "__PlayGround__.BackTracking_nQueen3"

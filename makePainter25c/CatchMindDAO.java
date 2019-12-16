@@ -251,7 +251,7 @@ public class CatchMindDAO {
 			pstmt = conn.prepareStatement(sb.toString());
 			pstmt.setInt(1, cmNo);
 			rs = pstmt.executeQuery();
-
+			
 			// 레코드 확인
 			rs.next();
 			String userId = rs.getString("userid");
