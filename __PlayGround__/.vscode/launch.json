@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ArrayListArrTest",
+            "request": "launch",
+            "mainClass": "__PlayGround__.ArrayListArrTest",
+            "projectName": "src_6a6f4952"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestMainHTSC",
+            "request": "launch",
+            "mainClass": "__PlayGround__.HashTable.TestMainHTSC",
+            "projectName": "src_6a6f4952"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - HashTableSC",
             "request": "launch",
             "mainClass": "__PlayGround__.HashTable.HashTableSC",

@@ -13,11 +13,16 @@ import vo.DeptVO;
 
 public class DeptDAO {
 	// 멤버변수 DB연결
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@192.168.0.35:1521:orcl";
-	String user = "scott";
-	String password = "tiger";
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@192.168.0.35:1521:orcl";
+//	String user = "scott";
+//	String password = "tiger";
 
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@orcl.ckyvzseloumz." + "ap-northeast-2.rds.amazonaws.com:1521:orcl";
+	String user = "admin";
+	String password = "tigertiger";
+	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	StringBuffer sb = new StringBuffer();

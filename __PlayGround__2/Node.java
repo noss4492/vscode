@@ -1,4 +1,4 @@
-package __PlayGround__.HashTable;
+package __PlayGround__2;
 
 public class Node {
 	String key;
